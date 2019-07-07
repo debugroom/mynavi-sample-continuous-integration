@@ -21,7 +21,7 @@
 
 <h2>Please call backend get users service.</h2>
 
-<form id="getForm" action="getUsers" method="get" >
+<form id="getUserForm" action="getUsers" method="get" >
   <button id="getUsersButton" name="getUsersButton" class="main-button" type="submit" value="Submit" >Get user</button>
 </form>
 
@@ -83,6 +83,13 @@
       </tbody>
     </table>
     <button id="addUsersButton" name="addUsersButton" class="main-button" type="submit" value="Submit" >Add user</button>
+</form>
+
+<h2>Please call backend get address service.</h2>
+
+<form id="getAddressForm" action="getAddress" method="get" >
+    <button id="getAddressButton" name="getAddressButton" class="main-button" type="submit" value="Submit" >Get Address</button>
+    <span id="getAddressFormErrorMessage" th:text="*{errorMessageForAddress != null } ? ${errorMessageForAddress} : ''"></span>
 </form>
 
 </body>

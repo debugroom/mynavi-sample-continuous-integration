@@ -78,12 +78,9 @@ public class BackendForFrontendControllerTest {
 
     @RunWith(SpringRunner.class)
     @WebMvcTest(controllers = BackendForFrontendController.class)
-    @ContextConfiguration(classes = {TestConfig.ControllerTestConfig.class})
+    @ContextConfiguration(classes = {TestConfig.UnitTestConfig.class, WebMvcTestConfig.class})
     @Category(org.debugroom.mynavi.sample.continuous.integration.common.apinfra.test.junit.UnitTest.class)
     public static class UnitTest{
-
-        @Value("#{servletContext.contextPath}")
-        private String contextPath;
 
         WebClient webClient;
 
@@ -176,7 +173,7 @@ public class BackendForFrontendControllerTest {
 
         @Test
         public void getUsersTest() throws Exception{
-            HtmlPage page = webClient.getPage("http://localhost:8080" + contextPath + "/getUsers");
+            HtmlPage page = webClient.getPage("http://localhost:8080/getUsers");
             assertThat(page.getTitleText(), is("GetUsers"));
             assertThat(page.getElementById("td-firstName-0")
                     .getFirstChild().asText(), is("太郎"));
@@ -226,7 +223,7 @@ public class BackendForFrontendControllerTest {
 
         @Test
         public void isUsableLoginIdNormalTest() throws Exception{
-            HtmlPage page = webClient.getPage("http://localhost:8080"+ contextPath + "/portal");
+            HtmlPage page = webClient.getPage("http://localhost:8080/portal");
             HtmlButton htmlButton = (HtmlButton)page.getElementById("isUsableLoginIdButton-0");
             HtmlTextInput loginIdInput = (HtmlTextInput)page.getElementById("loginId-0");
             loginIdInput.setText("taro.mynavi");
@@ -240,7 +237,7 @@ public class BackendForFrontendControllerTest {
 
         @Test
         public void isUsableLoginIdAbrmalTest() throws Exception{
-            HtmlPage page = webClient.getPage("http://localhost:8080" + contextPath + "/portal");
+            HtmlPage page = webClient.getPage("http://localhost:8080/portal");
             HtmlButton htmlButton = (HtmlButton)page.getElementById("isUsableLoginIdButton-0");
             HtmlTextInput loginIdInput = (HtmlTextInput)page.getElementById("loginId-0");
             loginIdInput.setText("jiro.mynavi");
